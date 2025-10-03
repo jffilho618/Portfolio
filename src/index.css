@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+* {
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+@theme {
+    --color-new-pink: #DD5CC5;
+    --color-new-green: #65EE58;
+    --color-new-green-dark: #4c8142;
+    --color-new-blue: #50B8F9;
+    --color-background-dark: #141C2A;
+    --color-background: #1C2535;
+    --color-background-bright: #2f3e57;
+    --color-font-color: #6d91d3;
+    --color-font-data-color: #889BBC;
+    --color-border-color: #313E57;
+    --color-border-line: #515F77;
+    --color-input-color: #283143;
+    --color-line-number: #3B4556;
+}
+
+
+.typing-effect {
+    overflow: hidden;
+    border-right: 2px solid #fff;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+
+    to {
+        width: 100%
+    }
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: transparent
+    }
+
+    50% {
+        border-color: #fff
+    }
+}
+
+*::selection {
+    background-color: #62df57;
+    color: white;
+}
+
+*::-webkit-scrollbar {
+    width: 8px;
+    background-color: #141C2A;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #2f3e57;
+    border-radius: 10px;
+}
+
+*::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+@keyframes lightPulse {
+    0% {
+        border-color: #4c8142;
+        color: #4c8142;
+    }
+
+    50% {
+        border-color: #65EE58;
+        color: #65EE58;
+    }
+
+    100% {
+        border-color: #4c8142;
+        color: #4c8142;
+    }
+}
