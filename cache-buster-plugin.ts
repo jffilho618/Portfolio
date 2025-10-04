@@ -11,7 +11,7 @@ export function cacheBusterPlugin(): Plugin {
       );
     },
     configureServer(server) {
-      server.middlewares.use((req, res, next) => {
+      server.middlewares.use((_req, res, next) => {
         res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
         res.setHeader('Pragma', 'no-cache');
         res.setHeader('Expires', '0');
