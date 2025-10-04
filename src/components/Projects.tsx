@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   FaArrowAltCircleLeft,
   FaArrowAltCircleRight,
@@ -7,6 +7,8 @@ import {
   FaGithub,
 } from "react-icons/fa";
 import { projects } from "../data/projects";
+import { getTechIcon } from "../utils/techIcons";
+import ProjectSkeleton from "./ProjectSkeleton";
 
 export default function Projects() {
   const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
@@ -74,13 +76,18 @@ export default function Projects() {
       </motion.h2>
 
       {/* Container Principal */}
-      <motion.div
-        className={`w-full bg-background-dark p-6 sm:p-8 relative rounded-2xl flex flex-col gap-6 border-background-bright border-2 transition-opacity duration-300 ${isTransitioning ? "opacity-50" : "opacity-100"}`}
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
+      <AnimatePresence mode="wait">
+        {isTransitioning ? (
+          <ProjectSkeleton key="skeleton" />
+        ) : (
+          <motion.div
+            key={`project-${currentProjectIndex}`}
+            className="w-full bg-background-dark p-6 sm:p-8 relative rounded-2xl flex flex-col gap-6 border-background-bright border-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+          >
         {/* Navegação */}
         {/* <div className="flex justify-between items-center absolute top-[-20px] left-0 right-0 px-4 z-10"> */}
         <FaArrowAltCircleLeft
@@ -160,18 +167,32 @@ export default function Projects() {
             {project.description}
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+          <div className="space-y-4 mt-2">
             <div>
-              <h5 className="text-new-pink text-sm sm:text-md">Cargo</h5>
+              <h5 className="text-new-pink text-sm sm:text-md mb-2">Cargo</h5>
               <p className="ml-2 font-light text-sm sm:text-base">
                 {project.role}
               </p>
             </div>
             <div>
-              <h5 className="text-new-pink text-sm sm:text-md">Tecnologias</h5>
-              <p className="ml-2 font-light text-sm sm:text-base">
-                {project.technologies}
-              </p>
+              <h5 className="text-new-pink text-sm sm:text-md mb-2">Tecnologias</h5>
+              <div className="flex flex-wrap gap-2 ml-2">
+                {project.technologies.split(", ").map((tech, idx) => {
+                  const { icon, color } = getTechIcon(tech);
+                  return (
+                    <motion.span
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: idx * 0.05 }}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium border ${color}`}
+                    >
+                      <span>{icon}</span>
+                      <span>{tech}</span>
+                    </motion.span>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -200,7 +221,9 @@ export default function Projects() {
             )}
           </div>
         </motion.div>
-      </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Indicadores */}
       <motion.div

@@ -7,6 +7,7 @@ import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Sticky from './components/Sticky'
+import ScrollProgress from './components/ScrollProgress'
 import { WidthProvider } from './context/useWidth/WidthContext'
 import Background from '/background.jpg'
 import { ToastContainer } from 'react-toastify'
@@ -18,7 +19,9 @@ export default function App() {
   }, [])
 
   return (
-    <div className={`bg-[#070B1C] min-h-screen px-4 py-10 relative 
+    <>
+      <ScrollProgress />
+      <div className={`bg-[#070B1C] min-h-screen px-4 py-10 relative 
       sm:px-6 sm:py-12           
       md:px-20 md:py-16           
       lg:px-30 lg:py-20            
@@ -64,5 +67,6 @@ export default function App() {
         </WidthProvider>
       </div>
     </div>
+    </>
   )
 }

@@ -182,11 +182,26 @@ export default function Contact() {
                     />
                 </motion.div>
 
-                <motion.input
-                    type="submit"
-                    value="Enviar"
-                    className="w-full sm:w-60 bg-border-line border-2 border-border-line rounded-lg sm:rounded-xl py-1 px-4 outline-none text-white hover:bg-new-pink hover:border-new-pink transition-all duration-200 ease-in-out cursor-pointer text-sm sm:text-base"
-                />
+                <div className="flex flex-wrap gap-3">
+                    <motion.a
+                        href="https://wa.me/5589988152737"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex-1 min-w-[200px]"
+                    >
+                        <button
+                            type="button"
+                            className="w-full px-4 py-2.5 text-sm flex justify-center items-center gap-2 bg-new-green rounded-xl border-2 border-new-green text-white cursor-pointer transition-all duration-200 ease-in-out hover:bg-new-green/80 hover:scale-105 font-medium"
+                        >
+                            📅 Agendar Reunião
+                        </button>
+                    </motion.a>
+                    <motion.input
+                        type="submit"
+                        value="Enviar"
+                        className="flex-1 min-w-[200px] bg-border-line border-2 border-border-line rounded-lg sm:rounded-xl py-2 px-4 outline-none text-white hover:bg-new-pink hover:border-new-pink transition-all duration-200 ease-in-out cursor-pointer text-sm sm:text-base"
+                    />
+                </div>
             </motion.form>
         </motion.section>
     );
