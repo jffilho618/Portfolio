@@ -7,7 +7,6 @@ import Hero from './components/Hero'
 import Projects from './components/Projects'
 import Skills from './components/Skills'
 import Sticky from './components/Sticky'
-import VersionIndicator from './components/VersionIndicator'
 import { WidthProvider } from './context/useWidth/WidthContext'
 import Background from '/background.jpg'
 import { ToastContainer } from 'react-toastify'
@@ -42,7 +41,6 @@ export default function App() {
       <div className='relative z-20 grid gap-6
         md:gap-8
         lg:gap-10'>
-        <VersionIndicator />
         <WidthProvider>
           <ToastContainer
             position="bottom-right"
