@@ -1,11 +1,7 @@
-// Profile.tsx (agora oculto em mobile)
-import { useWidth } from "../context/useWidth/useWidth";
+// Profile.tsx
 import { motion } from "motion/react";
+
 export default function Profile() {
-  const { width } = useWidth();
-
-  if (width < 768) return null;
-
   return (
     <motion.div
       variants={{
@@ -16,7 +12,7 @@ export default function Profile() {
           transition: { duration: 0.6, ease: "easeOut" },
         },
       }}
-      className="bg-[#1C2535] border-2 border-background-bright hidden md:block md:col-start-4 md:col-end-6 md:row-start-1 md:row-end-5 rounded-2xl h-full overflow-visible"
+      className="bg-[#1C2535] border-2 border-background-bright md:col-start-4 md:col-end-6 md:row-start-1 md:row-end-5 rounded-2xl h-64 sm:h-80 md:h-full overflow-hidden"
     >
       <motion.img
         src="/IMG_4146.png"
